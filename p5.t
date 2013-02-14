@@ -1,0 +1,5 @@
+int main()
+{
+  out i;
+}
+
