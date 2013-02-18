@@ -109,7 +109,7 @@ CompilationUnit
 	 	 $$->dump();
 	 	 $$->analyze();
 	 }
-	  else if ((after==1 && before==0)||(after==0 && before==0))
+	  else if (after==1 && before==0)
 	 {
 	 	$$->analyze();
 	 	$$->dump();
@@ -120,6 +120,8 @@ CompilationUnit
 	 	$$->analyze();
 	 	$$->dump();
 	 }
+	 else if (after==0 && before==0)
+	   $$->analyze();
 
 	 // generate code
 	 $$->encode();
