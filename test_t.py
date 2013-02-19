@@ -5,13 +5,17 @@ import subprocess
 import sys
 import datetime
 
-isTfile=lambda infile: True if infile[-2:]=='.t' else False
-
+#isTfile=lambda infile: True if infile[-2:]=='.t' else False
+def isTfile(infile):
+	if infile[-2:]=='.t':
+		return True
+	else:
+		return False
 
 tdir=sys.argv[1] #test directory
 cwd=os.getcwd() #current directory
-
-tfiles=filter(isTfile,os.listdir(os.getcwd()+'/'+tdir))
+                #path=cwd+'/'+tdir+'/'
+tfiles=filter(isTfile,os.listdir(cwd+'/'+tdir))
 #now T program test files are listed here
 
 
@@ -34,7 +38,8 @@ for eachfile in tfiles:
                                 '/'+eachfile, shell=True,
                                 stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT)
-    
+
+    flog.write('LEXDBG:'+os.linesep)
     for eachline in p_lexdbg.stdout.readlines():
         flog.write(eachline)
 
@@ -43,11 +48,32 @@ for eachfile in tfiles:
                             eachfile+' >'+tdir+'/'+eachfile[0:-2]+'.s',
                             shell=True, stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT)
-    
+
+    flog.write(os.linesep+'tc -before -after:'+os.linesep)
     for eachline in p_tc.stdout.readlines():
         flog.write(eachline)
 
-        
+
+    os.chdir(cwd+'/'+tdir)
+    out_tc = subprocess.Popen('gcc -m32 '+eachfile[0:-2]+'.s ../RTS.c -o '
+                              +eachfile[0:-2],
+                              shell=True, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT)
+
+    flog.write(os.linesep)
+    flog.write('COMPILE+OUTPUT:'+os.linesep)
+    for eachline in out_tc.stdout.readlines():
+        flog.write(eachline)
+ 
+
+    out_test = subprocess.Popen('./'+eachfile[0:-2],
+                              shell=True, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT)
+
+    flog.write(os.linesep)
+    for eachline in out_test.stdout.readlines():
+        flog.write(eachline)
     flog.close()
+    os.chdir(cwd)
 
 subprocess.call(['make','clean'])
