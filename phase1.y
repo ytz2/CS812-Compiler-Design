@@ -44,6 +44,17 @@ extern int yylex(void);
   AST_LeftHandSide *lhs;  
   AST_VariableDeclarator *variable_declarator;
   AST_Primary *primary;
+<<<<<<< HEAD
+  AST_Block *block;
+  AST_BlockStatements *block_statements;
+  AST_IfThenElseStatement *if_then_else;
+  AST_WhileStatement* while_statement;
+  AST_ReturnStatement* return_statement;
+  AST_BreakStatement *break_statement;
+  AST_ContinueStatement *continue_statement;
+  AST_EmptyStatement *empty;
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 };
 
 %token <value> INTEGER_LITERAL
@@ -94,6 +105,17 @@ extern int yylex(void);
 %type <expression> Expression
 %type <literal> Literal
 %type <output_statement> OutputStatement
+<<<<<<< HEAD
+%type <block> Block
+%type <block_statements> BlockStatements
+%type <if_then_else> IfThenElseStatement
+%type <while_statement> WhileStatement
+%type <return_statement> ReturnStatement
+%type <break_statement> BreakStatement
+%type <continue_statement> ContinueStatement
+%type <empty> EmptyStatement
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 
 %%
 
@@ -167,6 +189,8 @@ VariableDeclarator
 	}
         ;
 
+<<<<<<< HEAD
+=======
 //Picard 
 BlockStatement
         : Statement
@@ -174,6 +198,7 @@ BlockStatement
 	  $$=$1;
 	}
         ;
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 
 //Nappi
 MainBlock
@@ -237,6 +262,37 @@ Statement
 	{
 	  $$=$1;
 	}
+<<<<<<< HEAD
+	| Block
+	{
+	  $$=$1;
+	}
+	| EmptyStatement
+	{
+	  $$=$1;
+	}
+	| IfThenElseStatement
+	{
+	  $$=$1;
+	}
+	| WhileStatement
+	{
+	  $$=$1;
+	}
+	| ReturnStatement
+	{
+	  $$=$1;
+	}
+	| BreakStatement
+	{
+	  $$=$1;
+	}
+	| ContinueStatement
+	{
+	  $$=$1;
+	}
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 	;
 
 //Gunapal
@@ -460,6 +516,88 @@ Literal
 	}
 	;
 
+<<<<<<< HEAD
+//phase2
+
+Block
+	: '{' BlockStatements '}'
+	{
+	  $$=new AST_Block($2);
+	}
+	| '{' '}'
+	{
+	  $$=new AST_Block(NULL);
+	}
+	;
+
+BlockStatements
+	: BlockStatements BlockStatement
+	{
+	  $$=new AST_BlockStatements($2,$1);
+	}
+	| BlockStatement
+	{
+	  $$=new AST_BlockStatements($1,NULL);
+	}
+	;
+
+BlockStatement
+	: Statement
+	{
+	  $$=$1;
+	}
+	;
+
+
+IfThenElseStatement
+	: IF ParenExpression Statement ELSE Statement
+	{
+	  $$=new AST_IfThenElseStatement($2,$3,$5);
+	}
+	;
+
+WhileStatement
+	: WHILE ParenExpression Statement
+	{
+	  $$=new AST_WhileStatement($2,$3);
+	}
+	;
+
+ReturnStatement
+	: RETURN ';'
+	{
+	  $$=new AST_ReturnStatement(NULL);
+	}
+	| RETURN Expression ';'
+	{
+	  $$=new AST_ReturnStatement($2);
+	}
+	;
+
+BreakStatement
+	: BREAK ';'
+	{
+	  $$=new AST_BreakStatement();
+	}
+	;
+
+ContinueStatement
+	: CONTINUE ';'
+	{
+	  $$=new AST_ContinueStatement();
+	}
+	;
+
+EmptyStatement
+	: ';'
+	{
+	  $$=new AST_EmptyStatement();
+	}
+	;
+
+
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 %%
 void yyerror(const char *s)
 {

@@ -570,3 +570,157 @@ void AST_UnaryExpression::dump() {
 	left->dump();
 }
 
+<<<<<<< HEAD
+
+
+/*************************************************************************
+ *AST_BlockStatements
+ *************************************************************************/
+
+
+AST_BlockStatements::AST_BlockStatements(AST_Statement* st,
+		AST_BlockStatements* st_list) :
+		AST_StatementList(st, st_list) {
+}
+
+
+AST_BlockStatements::~AST_BlockStatements() {
+
+}
+
+void AST_BlockStatements::dump() {
+	cerr << "AST_BlockStatements\n";
+
+	if (restOfList != NULL)
+		restOfList->dump();
+	//else cerr << "First iterm in the List\n";
+	//cerr << "List Item\n";
+	item->dump();
+}
+
+
+/*************************************************************************
+ *AST_Block
+ *************************************************************************/
+AST_Block::AST_Block(AST_BlockStatements *BlockStatements)
+{
+	this->BlockStatements=BlockStatements;
+}
+
+AST_Block::~AST_Block()
+{
+	if (this->BlockStatements)
+		delete this->BlockStatements;
+}
+
+void AST_Block::dump()
+{
+	cerr<<"AST_Block"<<endl;
+	if (this->BlockStatements!=NULL)
+		this->BlockStatements->dump();
+}
+
+/*************************************************************************
+ *AST_IfThenElseStatement
+ *************************************************************************/
+AST_IfThenElseStatement::AST_IfThenElseStatement(AST_Expression *expression,AST_Statement *statement1,AST_Statement *statement2)
+{
+	this->expression=expression;
+	this->statement1=statement1;
+	this->statement2=statement2;
+}
+AST_IfThenElseStatement::~AST_IfThenElseStatement()
+{
+	if (this->expression!=NULL)
+		delete this->expression;
+	if (this->statement1!=NULL)
+		delete this->statement1;
+	if (this->statement2!=NULL)
+		delete this->statement2;
+}
+void AST_IfThenElseStatement::dump()
+{
+	cerr<<"AST_IfThenElseStatement"<<endl;
+	this->expression->dump();
+	this->statement1->dump();
+	this->statement2->dump();
+}
+
+/*************************************************************************
+ *AST_WhileStatement
+ *************************************************************************/
+AST_WhileStatement::AST_WhileStatement(AST_Expression *expression,AST_Statement *statement)
+{
+	this->expression=expression;
+	this->statement=statement;
+}
+AST_WhileStatement::~AST_WhileStatement()
+{
+	if (this->expression!=NULL)
+		delete this->expression;
+	if (this->statement!=NULL)
+		delete this->statement;
+}
+void AST_WhileStatement::dump()
+{
+	cerr<<"AST_WhileStatement"<<endl;
+	this->expression->dump();
+	this->statement->dump();
+}
+
+
+/*************************************************************************
+ *AST_ReturnStatement
+ *************************************************************************/
+AST_ReturnStatement::AST_ReturnStatement(AST_Expression *expression)
+{
+	this->expression=expression;
+}
+AST_ReturnStatement::~AST_ReturnStatement()
+{
+	if (this->expression!=NULL)
+		delete this->expression;
+}
+void AST_ReturnStatement::dump()
+{
+	cerr<<"AST_ReturnStatement"<<endl;
+	if (this->expression!=NULL)
+		this->expression->dump();
+}
+
+
+/*************************************************************************
+ *AST_BreakStatement
+ *************************************************************************/
+void AST_BreakStatement::dump()
+{
+	cerr<<this->name<<endl;
+}
+
+AST_BreakStatement::AST_BreakStatement(string uname)
+{
+	this->name=uname;
+}
+
+
+/*************************************************************************
+ *AST_ContinueStatement
+ *************************************************************************/
+AST_ContinueStatement::AST_ContinueStatement(string uname)
+	:AST_BreakStatement(uname)
+{
+
+}
+
+
+/*************************************************************************
+ *AST_EmptyStatement
+ *************************************************************************/
+AST_EmptyStatement::AST_EmptyStatement(string uname)
+	:AST_BreakStatement(uname)
+{
+
+}
+
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d

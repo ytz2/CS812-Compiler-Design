@@ -27,6 +27,10 @@ void encodeInitialize()
 // output the epilogue code
 void encodeFinish()
 {
+<<<<<<< HEAD
+  cout<< "MAINEXITLABEL:"<<endl;
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
   cout << "#\tEpilogue\n";
   cout <<"main$exit:\n";
   cout << "\tpopl\t%ebp\n";
@@ -307,16 +311,28 @@ void AST_MultiplicativeExpression::encode()
 	{
 		cout<<"\tpopl\t%ecx\n";
 		cout<<"\tcmpl\t$0, %ecx\n";
+<<<<<<< HEAD
+		cout<<"\tje\tLABEL"<<count_divide++<<endl;
+=======
 		cout<<"\tje\tLABEL1\n";
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 		cout<<"\tpopl\t%eax\n";
 		cout<<"\tcltd\n";
 		cout<<"\tidivl\t%ecx, %eax\n";
 		cout<<"\tpushl\t%eax\n";
+<<<<<<< HEAD
+		cout<<"\tjmp\tLABEL"<<count_divide++<<endl;
+		cout<<"LABEL"<<count_divide-2<<":\n";
+		cout<<"\tpushl\t$"<<this->getLineNumber()<<endl;
+		cout<<"\tcall\tRTS_printDivideByZeroError\n";
+		cout<<"LABEL"<<count_divide-1<<":\n";
+=======
 		cout<<"\tjmp\tLABEL2\n";
 		cout<<"LABEL"<<count_divide++<<":\n";
 		cout<<"\tpushl\t$"<<this->getLineNumber()<<endl;
 		cout<<"\tcall\tRTS_printDivideByZeroError\n";
 		cout<<"LABEL"<<count_divide++<<":\n";
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 	}
 }
 
@@ -363,3 +379,84 @@ void AST_OutputStatement::encode()
 	cout<<"\tcall\tRTS_outputInteger\n";
 	cout<<"\taddl\t$4, %esp\n";
 }
+<<<<<<< HEAD
+
+void AST_Block::encode()
+{
+	this->BlockStatements->encode();
+}
+
+void AST_IfThenElseStatement::encode()
+{
+	this->expression->encode();
+	cout << "#\tIfThenElseStatement\n";
+	cout<<"\tpopl\t%eax"<<endl;
+	cout<<"\tcmpl\t$0,\t%eax"<<endl;
+	cout<<"\tje\tLABEL"<<count_divide++<<endl;
+	this->statement1->encode();
+	cout<<"\tjmp\tLABEL"<<count_divide++<<endl;
+	cout<<"LABEL"<<count_divide-2<<":"<<endl;
+	this->statement2->encode();
+	cout<<"LABEL"<<count_divide-1<<":"<<endl;
+}
+
+void AST_WhileStatement::encode()
+{
+	string blabel,clabel;
+	break_label->push();
+	continue_label->push();
+	blabel=break_label->top();
+	clabel=continue_label->top();
+	cout << "#\tWhileStatement\n";
+	cout <<clabel<<":"<<endl;
+	this->expression->encode();
+	cout<<"\tpopl\t%eax"<<endl;
+	cout<<"\tcmpl\t$0,\t%eax"<<endl;
+	cout<<"\tje\t"<<blabel<<endl;
+	this->statement->encode();
+	cout<<"\tjmp\t"<<clabel<<endl;
+	cout<<blabel<<":"<<endl;
+	break_label->pop();
+	continue_label->pop();
+}
+
+void AST_BreakStatement::encode()
+{
+	if (break_label->isEmpty())
+	{
+		 cerr << line << ": No block to break\n";
+		 exit(-1);
+	}
+	cout << "#\tBreaktatement\n";
+	cout<<"\tjmp\t"<<break_label->top()<<endl;
+}
+
+void AST_ContinueStatement::encode()
+{
+	if (continue_label->isEmpty())
+	{
+		cerr << line << ": No block to continue\n";
+		exit(-1);
+	}
+	cout << "#\tContinuetatement\n";
+	cout<<"\tjmp\t"<<continue_label->top()<<endl;
+}
+
+void AST_ReturnStatement::encode()
+{
+	if (this->expression!=NULL)
+	{
+		this->expression->encode();
+		cout << "#\tReturnStatement\n";
+		cout<<"\tpopl\t%eax"<<endl;
+	}
+	cout<<"\tjmp\tMAINEXITLABEL"<<endl;
+}
+
+void AST_EmptyStatement::encode()
+{
+	//do nothing
+}
+
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d

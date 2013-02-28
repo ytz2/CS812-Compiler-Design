@@ -498,4 +498,120 @@ public:
 	void encode();
 };
 
+<<<<<<< HEAD
+
+////////////////////////   PHASE 2    ////////////////////////////////////
+
+
+/*************************************************************************
+ *AST_BlockStatements
+ *************************************************************************/
+
+class AST_BlockStatements:public AST_StatementList {
+public:
+	AST_BlockStatements(AST_Statement* st,
+			AST_BlockStatements* st_list);
+	virtual ~AST_BlockStatements();
+	virtual void dump();
+};
+
+/*************************************************************************
+ *AST_Block
+ *************************************************************************/
+class AST_Block:public AST_Statement
+{
+public:
+	AST_BlockStatements *BlockStatements;
+	AST_Block(AST_BlockStatements *BlockStatements);
+	void dump();
+	AST_Node* analyze();
+	void encode();
+	virtual ~AST_Block();
+};
+
+
+/*************************************************************************
+ *AST_IfThenElseStatement
+ *************************************************************************/
+class AST_IfThenElseStatement:public AST_Statement
+{
+public:
+	AST_Expression *expression;
+	AST_Statement *statement1;
+	AST_Statement *statement2;
+	AST_IfThenElseStatement(AST_Expression *expression,AST_Statement *statement1,AST_Statement *statement2);
+	~AST_IfThenElseStatement();
+	void dump();
+	AST_Node* analyze();
+	void encode();
+};
+
+
+/*************************************************************************
+ *AST_WhileStatement
+ *************************************************************************/
+class AST_WhileStatement:public AST_Statement
+{
+public:
+	AST_Expression *expression;
+	AST_Statement *statement;
+	AST_WhileStatement(AST_Expression *expression,AST_Statement *statement);
+	~AST_WhileStatement();
+	void dump();
+	AST_Node* analyze();
+	void encode();
+};
+
+
+
+/*************************************************************************
+ *AST_ReturnStatement
+ *************************************************************************/
+class AST_ReturnStatement:public AST_Statement
+{
+public:
+	AST_Expression *expression;
+	AST_ReturnStatement(AST_Expression *expression);
+	~AST_ReturnStatement();
+	void dump();
+	AST_Node* analyze();
+	void encode();
+};
+
+
+/*************************************************************************
+ *AST_BreakStatement
+ *************************************************************************/
+class AST_BreakStatement:public AST_Statement
+{
+public:
+	string name;
+	AST_BreakStatement(string uname="AST_BreakStatement");
+	void dump();
+	AST_Node* analyze();
+	void encode();
+};
+
+/*************************************************************************
+ *AST_ContinueStatement
+ *************************************************************************/
+class AST_ContinueStatement:public AST_BreakStatement
+{
+public:
+	AST_ContinueStatement(string uname="AST_ContinueStatement");
+	void encode();
+};
+
+/*************************************************************************
+ *AST_EmptyStatement
+ *************************************************************************/
+class AST_EmptyStatement:public AST_BreakStatement
+{
+public:
+	AST_EmptyStatement(string uname="AST_EmptyStatement");
+	void encode();
+};
+
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 #endif

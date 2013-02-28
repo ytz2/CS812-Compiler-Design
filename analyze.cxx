@@ -364,3 +364,60 @@ AST_Node* AST_UnaryExpression::analyze() {
 	type = left->type;
 	return (AST_Node*) this;
 }
+<<<<<<< HEAD
+
+/*************************************************************************
+ *AST_Block
+ *************************************************************************/
+
+AST_Node * AST_Block::analyze()
+{
+	if (this->BlockStatements != NULL)
+		this->BlockStatements->analyze();
+	return (AST_Node*) this;
+}
+
+
+/*************************************************************************
+ *AST_IfThenElseStatement
+ *************************************************************************/
+AST_Node *AST_IfThenElseStatement::analyze()
+{
+	this->expression->analyze();
+	this->statement1->analyze();
+	this->statement2->analyze();
+	return (AST_Node*) this;
+}
+
+/*************************************************************************
+ *AST_WhileStatement
+ *************************************************************************/
+AST_Node *AST_WhileStatement::analyze()
+{
+	this->expression->analyze();
+	this->statement->analyze();
+	return (AST_Node*) this;
+}
+
+/*************************************************************************
+ *AST_WhileStatement
+ *************************************************************************/
+AST_Node *AST_ReturnStatement::analyze()
+{
+	if (this->expression!=NULL)
+		this->expression->analyze();
+	return (AST_Node*) this;
+}
+
+
+/*************************************************************************
+ *AST_BreakStatement
+ *************************************************************************/
+AST_Node *AST_BreakStatement::analyze()
+{
+	return (AST_Node*) this;
+}
+
+
+=======
+>>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
