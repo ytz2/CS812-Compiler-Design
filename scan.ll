@@ -113,7 +113,7 @@ super                    {
                            return token(SUPER);
                          }
 
-IF                       {
+if                       {
                            return token(IF);
                          }
 
