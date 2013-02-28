@@ -364,7 +364,6 @@ AST_Node* AST_UnaryExpression::analyze() {
 	type = left->type;
 	return (AST_Node*) this;
 }
-<<<<<<< HEAD
 
 /*************************************************************************
  *AST_Block
@@ -419,5 +418,3 @@ AST_Node *AST_BreakStatement::analyze()
 }
 
 
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d

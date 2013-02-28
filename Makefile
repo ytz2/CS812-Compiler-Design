@@ -61,5 +61,5 @@ parsedbg: lex.yy.o y.tab.c main.cxx AST.o Type.o SymbolTable.o StringPool.o \
 	  StringPool.o analyze.o encode.o -o tc
 
 clean:
-	-rm lex.yy.*  y.tab.*  y.output *.o  lexdbg scan.c
+	-rm lex.yy.*  y.tab.*  y.output *.o  lexdbg scan.c *.gch
 

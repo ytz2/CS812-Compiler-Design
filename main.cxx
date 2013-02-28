@@ -7,10 +7,7 @@
 #include <cstring>
 #include <iostream>
 #include "AST.h"
-<<<<<<< HEAD
 #include "LabelStack.h"
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 using namespace std;
 // prototype for bison-generated parser
 int yyparse();
@@ -33,11 +30,8 @@ SymbolTable* symbolTable;
 // global type module
 TypeModule* types;
 
-<<<<<<< HEAD
 LabelStack* break_label;
 LabelStack* continue_label;
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 int before = 0;
 int after = 0;
 
@@ -65,13 +59,10 @@ int main(int argc, char* argv[]) {
 	// create a symbol table
 	symbolTable = new SymbolTable();
 
-<<<<<<< HEAD
 	//create break&continue label
 	break_label=new LabelStack("BREAKLABEL");
 	continue_label=new LabelStack("CONTINUELABEL");
 
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 	grep_cmd(argc, argv, before, after);
 	// set yydebug to 1 to enable bison debugging
 	// (preprocessor symbol YYDEBUG must also be 1 here and in parse.yy)
@@ -96,11 +87,8 @@ int main(int argc, char* argv[]) {
 
 	// cleanup the string pool
 	delete stringPool;
-<<<<<<< HEAD
 
 	// cleanup label stacks
 	delete break_label;
 	delete continue_label;
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 }

@@ -27,10 +27,7 @@ void encodeInitialize()
 // output the epilogue code
 void encodeFinish()
 {
-<<<<<<< HEAD
   cout<< "MAINEXITLABEL:"<<endl;
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
   cout << "#\tEpilogue\n";
   cout <<"main$exit:\n";
   cout << "\tpopl\t%ebp\n";
@@ -311,28 +308,16 @@ void AST_MultiplicativeExpression::encode()
 	{
 		cout<<"\tpopl\t%ecx\n";
 		cout<<"\tcmpl\t$0, %ecx\n";
-<<<<<<< HEAD
 		cout<<"\tje\tLABEL"<<count_divide++<<endl;
-=======
-		cout<<"\tje\tLABEL1\n";
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 		cout<<"\tpopl\t%eax\n";
 		cout<<"\tcltd\n";
 		cout<<"\tidivl\t%ecx, %eax\n";
 		cout<<"\tpushl\t%eax\n";
-<<<<<<< HEAD
 		cout<<"\tjmp\tLABEL"<<count_divide++<<endl;
 		cout<<"LABEL"<<count_divide-2<<":\n";
 		cout<<"\tpushl\t$"<<this->getLineNumber()<<endl;
 		cout<<"\tcall\tRTS_printDivideByZeroError\n";
 		cout<<"LABEL"<<count_divide-1<<":\n";
-=======
-		cout<<"\tjmp\tLABEL2\n";
-		cout<<"LABEL"<<count_divide++<<":\n";
-		cout<<"\tpushl\t$"<<this->getLineNumber()<<endl;
-		cout<<"\tcall\tRTS_printDivideByZeroError\n";
-		cout<<"LABEL"<<count_divide++<<":\n";
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 	}
 }
 
@@ -379,7 +364,6 @@ void AST_OutputStatement::encode()
 	cout<<"\tcall\tRTS_outputInteger\n";
 	cout<<"\taddl\t$4, %esp\n";
 }
-<<<<<<< HEAD
 
 void AST_Block::encode()
 {
@@ -458,5 +442,3 @@ void AST_EmptyStatement::encode()
 	//do nothing
 }
 
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d

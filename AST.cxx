@@ -570,7 +570,6 @@ void AST_UnaryExpression::dump() {
 	left->dump();
 }
 
-<<<<<<< HEAD
 
 
 /*************************************************************************
@@ -722,5 +721,3 @@ AST_EmptyStatement::AST_EmptyStatement(string uname)
 
 }
 
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d

@@ -44,7 +44,6 @@ extern int yylex(void);
   AST_LeftHandSide *lhs;  
   AST_VariableDeclarator *variable_declarator;
   AST_Primary *primary;
-<<<<<<< HEAD
   AST_Block *block;
   AST_BlockStatements *block_statements;
   AST_IfThenElseStatement *if_then_else;
@@ -53,8 +52,6 @@ extern int yylex(void);
   AST_BreakStatement *break_statement;
   AST_ContinueStatement *continue_statement;
   AST_EmptyStatement *empty;
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 };
 
 %token <value> INTEGER_LITERAL
@@ -105,7 +102,6 @@ extern int yylex(void);
 %type <expression> Expression
 %type <literal> Literal
 %type <output_statement> OutputStatement
-<<<<<<< HEAD
 %type <block> Block
 %type <block_statements> BlockStatements
 %type <if_then_else> IfThenElseStatement
@@ -114,8 +110,6 @@ extern int yylex(void);
 %type <break_statement> BreakStatement
 %type <continue_statement> ContinueStatement
 %type <empty> EmptyStatement
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 
 %%
 
@@ -189,16 +183,6 @@ VariableDeclarator
 	}
         ;
 
-<<<<<<< HEAD
-=======
-//Picard 
-BlockStatement
-        : Statement
-	{
-	  $$=$1;
-	}
-        ;
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 
 //Nappi
 MainBlock
@@ -262,7 +246,6 @@ Statement
 	{
 	  $$=$1;
 	}
-<<<<<<< HEAD
 	| Block
 	{
 	  $$=$1;
@@ -291,8 +274,6 @@ Statement
 	{
 	  $$=$1;
 	}
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 	;
 
 //Gunapal
@@ -516,7 +497,6 @@ Literal
 	}
 	;
 
-<<<<<<< HEAD
 //phase2
 
 Block
@@ -596,8 +576,6 @@ EmptyStatement
 	;
 
 
-=======
->>>>>>> a3052501d3fde445dd8ab41d969fe1de0be0999d
 %%
 void yyerror(const char *s)
 {
