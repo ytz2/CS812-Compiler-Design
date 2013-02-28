@@ -1,0 +1,200 @@
+LEXDBG:
+INT is int
+MAIN is main
+'(' is (
+')' is )
+'{' is {
+INT is int
+IDENTIFIER is i
+';' is ;
+INT is int
+IDENTIFIER is value
+';' is ;
+IDENTIFIER is i
+'=' is =
+INTEGER_LITERAL is 0
+';' is ;
+IDENTIFIER is value
+'=' is =
+INTEGER_LITERAL is 1
+';' is ;
+WHILE is while
+'(' is (
+IDENTIFIER is i
+'<' is <
+INTEGER_LITERAL is 13
+')' is )
+'{' is {
+OUT is out
+IDENTIFIER is i
+';' is ;
+OUT is out
+IDENTIFIER is value
+';' is ;
+IDENTIFIER is i
+'=' is =
+IDENTIFIER is i
+'+' is +
+INTEGER_LITERAL is 1
+';' is ;
+IDENTIFIER is value
+'=' is =
+IDENTIFIER is i
+'*' is *
+IDENTIFIER is value
+';' is ;
+'}' is }
+'}' is }
+
+tc -before -after:
+
+AST_MainBlock
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  <no type>
+AST_Identifier  <no type>   i
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  <no type>
+AST_Identifier  <no type>   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  0
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value <no type>
+AST_Identifier  <no type>   value
+AST_Primary  <no type>
+IntegerLiteral  int  1
+AST_WhileStatement
+AST_RelationalExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  13
+AST_Block
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_OutputStatement
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_OutputStatement
+AST_Primary  <no type>
+AST_Identifier  <no type>   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i <no type>
+AST_Identifier  <no type>   i
+AST_AdditivelExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  1
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value <no type>
+AST_Identifier  <no type>   value
+AST_MultiplicativeExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+AST_Identifier  <no type>   value
+
+AST_MainBlock
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  int
+AST_Identifier  int   i
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  int
+AST_Identifier  int   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  0
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value int
+AST_Identifier  int   value
+AST_Primary  int
+IntegerLiteral  int  1
+AST_WhileStatement
+AST_RelationalExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  13
+AST_Block
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_OutputStatement
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_OutputStatement
+Deref int
+AST_Primary  int
+AST_Identifier  int   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i int
+AST_Identifier  int   i
+AST_AdditivelExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  1
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value int
+AST_Identifier  int   value
+AST_MultiplicativeExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+Deref int
+AST_Primary  int
+AST_Identifier  int   value
+
+COMPILE+OUTPUT:
+Undefined symbols:
+  "_main", referenced from:
+      start in crt1.10.6.o
+  "RTS_outputInteger", referenced from:
+      CONTINUELABEL0 in cc20xTAD.o
+      CONTINUELABEL0 in cc20xTAD.o
+     (maybe you meant: _RTS_outputInteger)
+ld: symbol(s) not found
+collect2: ld returned 1 exit status
+
+/bin/sh: ./p4: No such file or directory

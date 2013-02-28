@@ -1,0 +1,214 @@
+LEXDBG:
+INT is int
+MAIN is main
+'(' is (
+')' is )
+'{' is {
+INT is int
+IDENTIFIER is i
+';' is ;
+INT is int
+IDENTIFIER is value
+';' is ;
+IDENTIFIER is i
+'=' is =
+INTEGER_LITERAL is 0
+';' is ;
+IDENTIFIER is value
+'=' is =
+INTEGER_LITERAL is 1
+';' is ;
+WHILE is while
+'(' is (
+INTEGER_LITERAL is 1
+')' is )
+'{' is {
+OUT is out
+IDENTIFIER is i
+';' is ;
+OUT is out
+IDENTIFIER is value
+';' is ;
+IDENTIFIER is i
+'=' is =
+IDENTIFIER is i
+'+' is +
+INTEGER_LITERAL is 1
+';' is ;
+IF is if
+'(' is (
+IDENTIFIER is i
+EQ_OP is ==
+INTEGER_LITERAL is 13
+')' is )
+BREAK is break
+';' is ;
+ELSE is else
+'{' is {
+'}' is }
+IDENTIFIER is value
+'=' is =
+IDENTIFIER is i
+'*' is *
+IDENTIFIER is value
+';' is ;
+'}' is }
+'}' is }
+
+tc -before -after:
+
+AST_MainBlock
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  <no type>
+AST_Identifier  <no type>   i
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  <no type>
+AST_Identifier  <no type>   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  0
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value <no type>
+AST_Identifier  <no type>   value
+AST_Primary  <no type>
+IntegerLiteral  int  1
+AST_WhileStatement
+AST_Primary  <no type>
+IntegerLiteral  int  1
+AST_Block
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_OutputStatement
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_OutputStatement
+AST_Primary  <no type>
+AST_Identifier  <no type>   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i <no type>
+AST_Identifier  <no type>   i
+AST_AdditivelExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  1
+AST_IfThenElseStatement
+AST_EqualityExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+IntegerLiteral  int  13
+AST_BreakStatement
+AST_Block
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value <no type>
+AST_Identifier  <no type>   value
+AST_MultiplicativeExpression  <no type>
+AST_Primary  <no type>
+AST_Identifier  <no type>   i
+AST_Primary  <no type>
+AST_Identifier  <no type>   value
+
+AST_MainBlock
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainBlockStatements
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  int
+AST_Identifier  int   i
+AST_MainVariableDeclarationStatement
+AST_MainVariableDeclaration
+AST_IntegeralType   int
+AST_VariableDeclarators
+AST_VariableDeclarator  int
+AST_Identifier  int   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  0
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value int
+AST_Identifier  int   value
+AST_Primary  int
+IntegerLiteral  int  1
+AST_WhileStatement
+AST_Primary  int
+IntegerLiteral  int  1
+AST_Block
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_BlockStatements
+AST_OutputStatement
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_OutputStatement
+Deref int
+AST_Primary  int
+AST_Identifier  int   value
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide i int
+AST_Identifier  int   i
+AST_AdditivelExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  1
+AST_IfThenElseStatement
+AST_EqualityExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+AST_Primary  int
+IntegerLiteral  int  13
+AST_BreakStatement
+AST_Block
+AST_ExpressionStatement
+AST_Assignment
+AST_LeftHandSide value int
+AST_Identifier  int   value
+AST_MultiplicativeExpression  int
+Deref int
+AST_Primary  int
+AST_Identifier  int   i
+Deref int
+AST_Primary  int
+AST_Identifier  int   value
+/bin/sh: line 1: 74662 Segmentation fault      ./tc -before -after < phase2_test/p5.t > phase2_test/p5.s
+
+COMPILE+OUTPUT:
+p5.s:unknown:Undefined local symbol LABEL2
+
+/bin/sh: ./p5: No such file or directory
