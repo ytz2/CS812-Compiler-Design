@@ -367,7 +367,8 @@ void AST_OutputStatement::encode()
 
 void AST_Block::encode()
 {
-	this->BlockStatements->encode();
+  if (this->BlockStatements!=NULL)
+    this->BlockStatements->encode();
 }
 
 void AST_IfThenElseStatement::encode()
